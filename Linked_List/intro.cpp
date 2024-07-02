@@ -26,6 +26,26 @@ Node* arrayToLinkedlist(vector<int> ans){
 }
 
 
+//2. Insert a new node at beginning
+Node* insertAtbBeginning(Node* head, int x){
+    Node* temp = new Node(x);
+    temp -> next = head;
+    head = temp;
+    return head;
+}
+
+//3. delete the last node of the linked list
+Node* deleteTail(Node* head){
+    Node* tail = head;
+    while(tail->next->next != NULL){
+        tail = tail -> next;
+    }
+    Node* temp = tail -> next;
+    tail -> next = NULL;
+    delete temp;
+    return head;
+}
+
 
 
 
