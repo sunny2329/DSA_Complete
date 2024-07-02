@@ -35,6 +35,19 @@ void reverses(int arr[],int start, int end){
     reverses(arr,start,end);
 }
 
+//6. Palindrome 
+bool palindrome(int i, string& s){
+    if(i>=s.length()/2) return true;
+    if(s[i] != s[s.length()-i-1]) return false;
+    return palindrome(i+1,s);
+}
+
+//7. Fibonacci
+int fibonacci(int N){
+    if(N<=1) return N;
+    return fibonacci(N-1) + fibonacci(N-2);
+}
+
 
 
 
