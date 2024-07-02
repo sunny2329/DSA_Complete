@@ -36,6 +36,7 @@ Node* insertAtbBeginning(Node* head, int x){
 
 //3. delete the last node of the linked list
 Node* deleteTail(Node* head){
+    if(head == NULL || head -> next == NULL) return NULL;
     Node* tail = head;
     while(tail->next->next != NULL){
         tail = tail -> next;
@@ -45,6 +46,8 @@ Node* deleteTail(Node* head){
     delete temp;
     return head;
 }
+
+
 
 
 
