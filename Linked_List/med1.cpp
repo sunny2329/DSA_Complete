@@ -25,6 +25,26 @@ Node* middleNode(Node* head){
 }
 
 
+//isPalindrome in linked list
+
+bool isPalindrome(Node* head){
+    Node* temp = head;
+    stack<int> s;
+    while(temp!=NULL){
+        s.push(temp->data);
+        temp = temp -> next;
+    }
+    temp = head;
+    while(!s.empty()){
+        if(s.top()!=temp->data) return false;
+        temp = temp -> next;
+        s.pop();
+    }
+    return true;
+}
+
+
+
 Node* reverseLL(Node* head){
     Node* prev = NULL;
     Node* curr = head;
@@ -64,6 +84,27 @@ bool hasCycle(Node* head){
         temp = temp -> next;
     }
     return false;
+}
+
+
+// detect cycle in the linked list
+//approach: pehle fast aur slow ko iterate karvoa jaise hi fast == slow ho jai slow=head kar do aur ek baar aur loop chalega jab tak slow == fast nahi hota then return slow as answer.
+Node* detectCycle(Node* head){
+    Node* slow = head;
+    Node* fast = head;
+    while(fast!=NULL && fast->next!=NULL){
+        fast = fast->next->next;
+        slow = slow->next;
+        if(fast == slow){
+            slow = head;
+            while(fast!=slow){
+                fast = fast->next;
+                slow = slow->next;
+            }
+        }
+        return slow;
+    }
+    return NULL;
 }
 
 
