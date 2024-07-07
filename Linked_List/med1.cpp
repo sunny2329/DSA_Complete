@@ -39,6 +39,33 @@ Node* reverseLL(Node* head){
     return prev;
 }
 
+Node* solve(Node* &head){
+    if(head == NULL || head -> next == NULL) return head;
+    Node* head1 = solve(head -> next);
+    head -> next -> next = head;
+    head -> next = NULL;
+    return head1;
+}
+
+Node* reverseLLrec(Node* head){
+    if(head == NULL || head -> next == NULL ) return head;
+    return solve(head);
+}
+
+
+// has cycle in the linked list
+
+bool hasCycle(Node* head){
+    Node* temp = head;
+    map<Node*, bool> mp;
+    while(temp!=NULL){
+        if(mp[temp] == true) return true;
+        mp[temp] = true;
+        temp = temp -> next;
+    }
+    return false;
+}
+
 
 
 int main()
