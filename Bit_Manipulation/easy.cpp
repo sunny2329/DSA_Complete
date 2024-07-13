@@ -59,6 +59,35 @@ int countSetBits(int n)
     return cnt;
 }
 
+// set the right most bit
+int setBit(int n)
+{
+    // Write Your Code here
+    int m = n;
+    int cnt = 0;
+    while (m != 0)
+    {
+        if ((m & 1) == 0)
+            break;
+        cnt++;
+        m = m >> 1;
+    }
+    return n | (1 << cnt);
+}
+
+// swap two number with xor
+pair<int, int> get(int a, int b)
+{
+    // complete the function here
+    a = a ^ b;
+    b = a ^ b;
+    a = a ^ b;
+    pair<int, int> p1;
+    p1.first = a;
+    p1.second = b;
+    return p1;
+}
+
 int main()
 {
 }
