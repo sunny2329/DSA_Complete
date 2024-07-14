@@ -14,8 +14,8 @@ void bitManipulation(int num, int i)
     int get = m & 1;
     cout << get;
     long long int k = i - 1;
-    long long int sets = nums | (1 << k);
-    long long int clears = nums & ~(1 << k);
+    long long int sets = num | (1 << k);
+    long long int clears = num & ~(1 << k);
 }
 
 // check the kth bit;
