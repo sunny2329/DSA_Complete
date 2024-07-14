@@ -77,7 +77,7 @@ int upperBound(vector<int> arr, int x, int n)
     return ans;
 }
 
-//first occurence
+// first occurence
 int firstO(vector<int> &nums, int target)
 {
     int start = 0;
@@ -102,7 +102,7 @@ int firstO(vector<int> &nums, int target)
     return ans;
 }
 
-//last occurence
+// last occurence
 int lastO(vector<int> &nums, int target)
 {
     int start = 0;
@@ -127,9 +127,37 @@ int lastO(vector<int> &nums, int target)
     return ans;
 }
 
+// search in rotated sorted array
 
-
-
+int searchRot(vector<int> &nums, int target)
+{
+    int low = 0;
+    int high = nums.size() - 1;
+    while (low <= high)
+    {
+        int mid = (low + high) / 2;
+        if (nums[mid] == target)
+            return mid;
+        if (nums[low] <= nums[mid])
+        {
+            if (nums[low] <= target && target < nums[mid])
+            {
+                high = mid - 1;
+            }
+            else
+            {
+                low = mid + 1;
+            }
+        }
+        else
+        {
+            if (nums[mid] < target && target <= nums[high])
+                low = mid + 1;
+            else
+                high = mid - 1;
+        }
+    }
+}
 
 int main()
 {
