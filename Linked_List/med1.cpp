@@ -181,6 +181,88 @@ Node *removeNthFromEnd(Node *head, int n)
     return head;
 }
 
+Node *segregate(Node *head)
+{
+
+    // Add code here
+    Node *zeros = new Node(-1);
+    Node *ones = new Node(-1);
+    Node *twos = new Node(-1);
+    Node *z = zeros;
+    Node *o = ones;
+    Node *t = twos;
+    Node *temp = head;
+    while (temp != NULL)
+    {
+        if (temp->data == 0)
+        {
+            z->next = temp;
+            z = temp;
+        }
+        else if (temp->data == 1)
+        {
+            o->next = temp;
+            o = temp;
+        }
+        else
+        {
+            t->next = temp;
+            t = temp;
+        }
+        temp = temp->next;
+    }
+    z->next = (ones->next) ? (ones->next) : (twos->next);
+    o->next = twos->next;
+    t->next = NULL;
+    return zeros->next;
+}
+
+// find the intersection
+Node *getIntersection(Node *headA, Node *headB)
+{
+    map<Node *, bool> map;
+    Node *temp = headA;
+    while (temp != NULL)
+    {
+        map[temp] = true;
+        temp = temp->next;
+    }
+    temp = headB;
+    while (temp != NULL)
+    {
+        if (map[temp])
+            return temp;
+        temp = temp->next;
+    }
+    return NULL;
+}
+
+// Add 1 to linked list
+int addHelper(Node *temp)
+{
+    if (temp == NULL)
+        return 1;
+    int carry = addHelper(temp->next);
+    temp->data += carry;
+    if (temp->data < 10)
+        return 0;
+    temp->data = 0;
+    return 1;
+}
+Node *addOne(Node *head)
+{
+    // Your Code here
+    // return head of list after adding one
+    int carry = addHelper(head);
+    if (carry == 1)
+    {
+        Node *newNode = new Node(1);
+        newNode->next = head;
+        head = newNode;
+    }
+    return head;
+}
+
 int main()
 {
 }

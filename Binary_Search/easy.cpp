@@ -159,6 +159,45 @@ int searchRot(vector<int> &nums, int target)
     }
 }
 
+// search in sorted array2
+
+bool searchs(vector<int> &nums, int target)
+{
+    int l = 0;
+    int r = nums.size() - 1;
+
+    while (l <= r)
+    {
+        int mid = l + (r - l) / 2;
+        if (nums[mid] == target)
+            return true;
+
+        if ((nums[l] == nums[mid]) && (nums[r] == nums[mid]))
+        {
+            l++;
+            r--;
+        }
+
+        else if (nums[l] <= nums[mid])
+        {
+
+            if ((nums[l] <= target) && (nums[mid] > target))
+                r = mid - 1;
+            else
+                l = mid + 1;
+        }
+
+        else
+        {
+            if ((nums[mid] < target) && (nums[r] >= target))
+                l = mid + 1;
+            else
+                r = mid - 1;
+        }
+    }
+    return false;
+}
+
 int main()
 {
     vector<int> arr = {3, 5, 8, 9, 15, 19};

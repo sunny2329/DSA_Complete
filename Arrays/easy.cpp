@@ -135,6 +135,56 @@ int singleNumber(vector<int> &nums)
     return ans;
 }
 
+// find the length of the longest subarray with sum k (positive)
+int maxLenSub(vector<int> &nums, int k)
+{
+    int m = k;
+    int maxLen = 0;
+    for (int i = 0; i < nums.size(); i++)
+    {
+        for (int j = i; j < nums.size(); j++)
+        {
+            int sum = 0;
+            for (int l = i; l <= j; l++)
+            {
+                sum += nums[l];
+            }
+            if (sum == k)
+            {
+                maxLen = max(maxLen, j - i + 1);
+            }
+        }
+    }
+    return maxLen;
+}
+
+int lenOfLongSubarr(int A[], int N, int K)
+{
+    // Complete the function
+    unordered_map<int, int> um;
+    int sum = 0, maxLen = 0;
+
+    for (int i = 0; i < N; i++)
+    {
+        sum += A[i];
+        if (sum == K)
+            maxLen = i + 1;
+
+        if (um.find(sum) == um.end())
+            um[sum] = i;
+
+        if (um.find(sum - K) != um.end())
+        {
+            if (maxLen < (i - um[sum - K]))
+                maxLen = i - um[sum - K];
+        }
+    }
+    return maxLen;
+}
+
 int main()
 {
+    vector<int> nums = {12, 14, 16, 18, 20};
+    int k = 30;
+    cout << "Second largest element: " << maxLenSub(nums, k) << endl;
 }
