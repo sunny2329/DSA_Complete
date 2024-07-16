@@ -57,6 +57,26 @@ vector<int> nextGreaterElements(vector<int> &nums)
     return ans;
 }
 
+
+//next smaller element
+vector<int> prevSmaller(vector<int>& a){
+    vector<int> ans;
+    ans.resize(a.size());
+    stack<int> st;
+
+    for(int i = 0;i<a.size();i++){
+        while(!st.empty() && st.top() >= a[i]) st.pop();
+        if(st.empty()){
+            ans[i] = -1;
+        }else {
+            ans[i] = st.top();
+        }
+        st.push(a[i]);
+    }
+    return ans;
+}
+
+
 int main()
 {
 }
