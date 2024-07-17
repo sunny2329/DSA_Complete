@@ -30,8 +30,7 @@ int majorityElement(vector<int> &nums)
     return -1;
 }
 
-
-//dutch national flag algorithm
+// dutch national flag algorithm
 void sortColors(vector<int> &nums)
 {
     int n = nums.size();
@@ -54,6 +53,21 @@ void sortColors(vector<int> &nums)
             high--;
         }
     }
+}
+
+// stocks
+
+int maxProfit(vector<int> &prices)
+{
+    int mini = prices[0];
+    int maxpr = 0;
+
+    for (int i = 0; i < prices.size(); i++)
+    {
+        maxpr = max(maxpr, prices[i] - mini);
+        mini = min(prices[i], mini);
+    }
+    return maxpr;
 }
 
 int main()
